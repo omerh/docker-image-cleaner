@@ -1,0 +1,16 @@
+version: "2.2"
+
+services:
+  image-cleaner:
+    image: 8371a03eb557
+    networks:
+      - image-cleaner
+    environment:
+      - TIME_INTERVAL=5s
+      - FILTER='alpine:latest,your-image:tag'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    mem_limit: 50m
+    cpus: 0.1 
+networks:
+  image-cleaner:
