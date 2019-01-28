@@ -43,7 +43,7 @@ func init() {
 	// ticker
 	tickerEnvWait, ok := os.LookupEnv("TIME_INTERVAL")
 	if !ok {
-		tickerEnvWait = "60s"
+		tickerEnvWait = "60h"
 	}
 	var err error
 	tickerWait, err = time.ParseDuration(tickerEnvWait)

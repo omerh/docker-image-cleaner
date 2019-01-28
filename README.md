@@ -1,6 +1,7 @@
 # Docker Image Cleaner
 
-This container is for standalone docker or docker swarm clusters for cleaning images as a maintancen utility that relays inside as a container.
+This container is for standalone docker or docker swarm clusters for cleaning images as a maintenance utility that relays inside as a container.
+It works with time interval that defaults to 1h and gives a filter list to exclude specific images from being deleted.
 
 To run in a swarm cluster:
 
