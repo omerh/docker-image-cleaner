@@ -15,6 +15,15 @@ To run in a standalone docker host:
 sudo docker-compose -f deploy/standalone/docker-image-cleaner.yml up -d
 ```
 
+To run it ad-hoc:
+
+```bash
+sudo docker run \
+  -e TIME_INTERVAL=5s \
+  -e FILTER=alpine:latest \
+  -v /var/run/docker.sock:/var/run/docker.sock -d omerha/docker-image-cleaner:latest
+```
+
 Configuration environment variables:
 
 - TIME_INTERVAL='120m' (can be s,m,h)

@@ -80,7 +80,7 @@ func runtime() {
 				log.Printf("Cleaning image %v, with tags %v", image.ID, image.RepoTags)
 				_, err := cli.ImageRemove(context.Background(), image.ID, removeOptions)
 				if err != nil {
-					log.Printf("Can not removing image %v, Image is in use by a running container", image.ID)
+					log.Printf("Can't remove image %v, image is in use by a running container", image.ID)
 					// log.Printf("Reason: %v", err)
 				} else {
 					reducedSpace = reducedSpace + image.Size
