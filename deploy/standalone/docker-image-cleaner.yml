@@ -2,7 +2,7 @@ version: "2.2"
 
 services:
   image-cleaner:
-    image: 8371a03eb557
+    image: omerha/docker-image-cleaner:latest
     networks:
       - image-cleaner
     environment:
