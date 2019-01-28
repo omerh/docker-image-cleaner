@@ -6,7 +6,7 @@ services:
     networks:
       - image-cleaner
     environment:
-      - TIME_INTERVAL=5s
+      - TIME_INTERVAL=6h
       - FILTER='omerha/docker-image-cleaner:latest,your-image:tag'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
