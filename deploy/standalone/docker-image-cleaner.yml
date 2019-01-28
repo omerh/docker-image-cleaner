@@ -5,7 +5,7 @@ services:
     image: omerha/docker-image-cleaner:latest
     environment:
       - TIME_INTERVAL=6h
-      - FILTER='omerha/docker-image-cleaner:latest,your-image:tag'
+      - FILTER=omerha/docker-image-cleaner:latest,your-image:tag
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     mem_limit: 50m
