@@ -29,4 +29,4 @@ Configuration environment variables:
 - TIME_INTERVAL='120m' (can be s,m,h)
 - FILTER='alpine:latest,your-image:tag' (Filter your images you wish to keep on your docker hosts)
 
-Optional environment variables: DOCKER_API_VERSION that now defaults to 1.39
+Optional environment variables: `DOCKER_API_VERSION` that now defaults to `1.39`
