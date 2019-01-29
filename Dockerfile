@@ -10,9 +10,8 @@ RUN CGO_ENABLED=0 \
     go build -ldflags '-w -extldflags "-static"'
 
 
-FROM alpine:3.8 AS Runner
+FROM scratch
 
-RUN apk add --update ca-certificates
-COPY  --from=Builder /go/src/app/app /usr/local/bin/app
+COPY  --from=Builder /go/src/app/app /go/bin/app
 
-CMD [ "app" ]
+CMD [ "/go/bin/app" ]
