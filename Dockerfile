@@ -1,14 +1,13 @@
-FROM golang:1.11.1 AS Builder
+FROM golang:1.12.4 AS Builder
 
-RUN go get -u github.com/docker/docker/client
+ENV GO111MODULE=on
 
 COPY . /go/src/app
 WORKDIR /go/src/app
 
 RUN CGO_ENABLED=0 \
     GOOS=linux \
-    go build -ldflags '-w -extldflags "-static"'
-
+    go build -ldflags '-w -extldflags "-static"' -o app
 
 FROM scratch
 
