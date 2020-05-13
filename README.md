@@ -21,12 +21,14 @@ To run it ad-hoc:
 sudo docker run \
   -e TIME_INTERVAL=5s \
   -e FILTER=alpine:latest \
+  -e FRESHNESS=10 \
   -v /var/run/docker.sock:/var/run/docker.sock -d omerha/docker-image-cleaner:latest
 ```
 
 Configuration environment variables:
 
-- TIME_INTERVAL=120m (can be s,m,h)
+- TIME_INTERVAL=120m (can be s,m,h) defaults to 24 hours
 - FILTER=alpine:latest,your-image:tag (Filter your images you wish to keep on your docker hosts)
+- FRESHNESS=10 will keep images that were created in the last 10min (default 30min)
 
 Optional environment variables: `DOCKER_API_VERSION` that now defaults to `1.39`
