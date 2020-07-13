@@ -19,9 +19,10 @@ To run it ad-hoc:
 
 ```bash
 sudo docker run \
-  -e TIME_INTERVAL=5s \
+  -e TIME_INTERVAL=1h \
   -e FILTER=alpine:latest \
   -e FRESHNESS=10 \
+  --restart always \
   -v /var/run/docker.sock:/var/run/docker.sock -d omerha/docker-image-cleaner:latest
 ```
 
