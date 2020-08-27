@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/docker/docker/api/types"
+	"github.com/docker/docker/api/types/filters"
 	"github.com/docker/docker/client"
 )
 
@@ -82,6 +83,14 @@ func runtime() {
 	freshImageTime := time.Now().Add(time.Minute * time.Duration(freshness))
 	log.Printf("Will skip images that were created after %v", freshness)
 
+	// prun containers
+	log.Println("Pruning unused conitainers")
+	pruneContainers(cli)
+
+	// Prune volumes
+	log.Println("Prunning unused volumes")
+	pruneUnusedVolumes(cli)
+
 	for _, image := range images {
 		if image.Created < freshImageTime.Unix() {
 			// Image are older than 30 minutes and can be deleted
@@ -133,4 +142,18 @@ func deleteDockerImage(image types.ImageSummary, cli *client.Client) int64 {
 func printSize(reducedSpace int64) {
 	sizeInMb := float64(reducedSpace) / 1000 / 1000
 	log.Printf("Cleaned %.2fMB from disk", sizeInMb)
+}
+
+func pruneUnusedVolumes(cli *client.Client) {
+	_, volErr := cli.VolumesPrune(context.Background(), filters.Args{})
+	if volErr != nil {
+		log.Println("Failed to delete unused volumes")
+	}
+}
+
+func pruneContainers(cli *client.Client) {
+	_, pruneErr := cli.ContainersPrune(context.Background(), filters.Args{})
+	if pruneErr != nil {
+		log.Println("Failed to prune unused containers")
+	}
 }
