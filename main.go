@@ -84,7 +84,7 @@ func runtime() {
 	log.Printf("Will skip images that were created after %v", freshness)
 
 	// prun containers
-	log.Println("Pruning unused conitainers")
+	log.Println("Pruning unused containers")
 	pruneContainers(cli)
 
 	// Prune volumes
